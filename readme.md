@@ -27,7 +27,7 @@ var value = hash.Compute();
   - Allows incremental hashes, copy of hashes before appending new data...etc.
 - Allows to compute the **hash for structured data** (`Write(int32)`, `Write(short)`...etc.) and not only for a `byte[]`
   - This is useful when computing the hash of some datas without having to serialize them to a `byte[]`
-- Provides a generic [`HashStream<THash>`](src/Smash/HashStream.cs) to compute update a hash while reading/writing from another stream.
+- Provides a generic [`HashStream<THash>`](src/Smash/HashStream.cs) to update a hash while reading/writing from another stream.
 
 ## Note
 

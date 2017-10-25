@@ -1,4 +1,4 @@
-﻿// Copyright (c) Alexandre Mutel. All rights reserved.
+// Copyright (c) Alexandre Mutel. All rights reserved.
 // Licensed under the BSD-Clause 2 license. 
 // See license.txt file in the project root for full license information.
 /*
@@ -272,7 +272,7 @@ namespace Smash
                     case 2:
                         _v3 = XXH64_round(_v3, input);
                         break;
-                    case 4:
+                    case 3:
                         _v4 = XXH64_round(_v4, input);
                         break;
                 }
@@ -502,7 +502,7 @@ namespace Smash
                     case 2:
                         _v3 = XXH32_round(_v3, input);
                         break;
-                    case 4:
+                    case 3:
                         _v4 = XXH32_round(_v4, input);
                         break;
                 }

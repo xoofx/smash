@@ -5,13 +5,16 @@
     <Copyright>Alexandre Mutel</Copyright>
     <AssemblyTitle>Smash</AssemblyTitle>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <VersionPrefix>0.1.0</VersionPrefix>
+    <VersionPrefix>0.1.1</VersionPrefix>
     <Authors>Alexandre Mutel</Authors>
     <TargetFrameworks>net35;net40;netstandard1.1;uap10.0</TargetFrameworks>
     <AssemblyName>Smash</AssemblyName>
     <PackageId>Smash</PackageId>
+    <PackageId Condition="'$(SignAssembly)' == 'true'">Smash.Signed</PackageId>
     <PackageTags>hashing;xxhash;hash;hash-functions</PackageTags>
     <PackageReleaseNotes>
+&gt; 0.1.1
+ - Update to generate Smash.Signed assembly
 &gt; 0.1.0
  - First release with xxHash
   </PackageReleaseNotes>

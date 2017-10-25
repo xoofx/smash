@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Description>A collection of Hash functions dedicated for fast computations for .NET</Description>
+    <Description>A collection of Hash functions (xxHash...) dedicated for fast computations for .NET </Description>
     <Copyright>Alexandre Mutel</Copyright>
     <AssemblyTitle>Smash</AssemblyTitle>
     <NeutralLanguage>en-US</NeutralLanguage>
@@ -10,11 +10,11 @@
     <TargetFrameworks>net35;net40;netstandard1.1;uap10.0</TargetFrameworks>
     <AssemblyName>Smash</AssemblyName>
     <PackageId>Smash</PackageId>
-    <PackageTags>hashing</PackageTags>
+    <PackageTags>hashing;xxhash;hash;hash-functions</PackageTags>
     <PackageReleaseNotes>
 &gt; 0.1.0
- - First release
-    </PackageReleaseNotes>
+ - First release with xxHash
+  </PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/xoofx/smash</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/xoofx/smash/license.txt</PackageLicenseUrl>
     <NetStandardImplicitPackageVersion Condition=" '$(TargetFramework)' == 'netstandard1.1' ">1.6.0</NetStandardImplicitPackageVersion>

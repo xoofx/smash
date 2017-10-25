@@ -1,8 +1,8 @@
-# smash [![Build status](https://ci.appveyor.com/api/projects/status/ig5kv8r63bqjsd9a?svg=true)](https://ci.appveyor.com/project/xoofx/smash)   [![NuGet](https://img.shields.io/nuget/v/Smash.svg)](https://www.nuget.org/packages/Smash/)
+# smash [![Build status](https://ci.appveyor.com/api/projects/status/1dr6gc2jigpgai0v?svg=true)](https://ci.appveyor.com/project/xoofx/smash)   [![NuGet](https://img.shields.io/nuget/v/Smash.svg)](https://www.nuget.org/packages/Smash/)
 
 <img align="right" width="128px" height="128px" src="img/smash.png">
 
-Smash is a lightweight library that provides a collection of non-cryptographic hashes for .NET
+Smash is a fast and lightweight library that provides a collection of non-cryptographic hashes for .NET
 
 ```C#
 // Computes the hash of the following int32

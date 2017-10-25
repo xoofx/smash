@@ -1,6 +1,6 @@
 # smash [![Build status](https://ci.appveyor.com/api/projects/status/1dr6gc2jigpgai0v?svg=true)](https://ci.appveyor.com/project/xoofx/smash)   [![NuGet](https://img.shields.io/nuget/v/Smash.svg)](https://www.nuget.org/packages/Smash/)
 
-<img align="right" width="128px" height="128px" src="img/smash.png">
+<img align="right" width="160px" height="160px" src="img/smash.png">
 
 Smash is a fast and lightweight library that provides a collection of non-cryptographic hashes for .NET
 

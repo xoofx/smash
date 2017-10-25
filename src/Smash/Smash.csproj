@@ -5,7 +5,7 @@
     <Copyright>Alexandre Mutel</Copyright>
     <AssemblyTitle>Smash</AssemblyTitle>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <VersionPrefix>0.1.1</VersionPrefix>
+    <VersionPrefix>0.1.2</VersionPrefix>
     <Authors>Alexandre Mutel</Authors>
     <TargetFrameworks>net35;net40;netstandard1.1;uap10.0</TargetFrameworks>
     <AssemblyName>Smash</AssemblyName>
@@ -13,6 +13,8 @@
     <PackageId Condition="'$(SignAssembly)' == 'true'">Smash.Signed</PackageId>
     <PackageTags>hashing;xxhash;hash;hash-functions</PackageTags>
     <PackageReleaseNotes>
+&gt; 0.1.2
+ - Update link to license.txt
 &gt; 0.1.1
  - Update to generate Smash.Signed assembly
 &gt; 0.1.0
@@ -20,7 +22,7 @@
   </PackageReleaseNotes>
     <PackageIconUrl>https://raw.githubusercontent.com/xoofx/smash/master/img/smash.png</PackageIconUrl>
     <PackageProjectUrl>https://github.com/xoofx/smash</PackageProjectUrl>
-    <PackageLicenseUrl>https://github.com/xoofx/smash/license.txt</PackageLicenseUrl>
+    <PackageLicenseUrl>https://github.com/xoofx/smash/blob/master/license.txt</PackageLicenseUrl>
     <NetStandardImplicitPackageVersion Condition=" '$(TargetFramework)' == 'netstandard1.1' ">1.6.0</NetStandardImplicitPackageVersion>
   </PropertyGroup>
 

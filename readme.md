@@ -69,8 +69,6 @@ Smash is just an implementation of existing hash methods. All the credits should
 
 * [**`xxHash`**](https://github.com/Cyan4973/xxHash)
 
-Adapted logo `Puzzle` by [Andrew Doane](https://thenounproject.com/andydoane/) from the Noun Project
-
 ## Author
 
 Alexandre Mutel aka [xoofx](http://xoofx.com).

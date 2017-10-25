@@ -15,6 +15,7 @@
 &gt; 0.1.0
  - First release with xxHash
   </PackageReleaseNotes>
+    <PackageIconUrl>https://raw.githubusercontent.com/xoofx/smash/master/img/smash.png</PackageIconUrl>
     <PackageProjectUrl>https://github.com/xoofx/smash</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/xoofx/smash/license.txt</PackageLicenseUrl>
     <NetStandardImplicitPackageVersion Condition=" '$(TargetFramework)' == 'netstandard1.1' ">1.6.0</NetStandardImplicitPackageVersion>

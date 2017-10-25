@@ -1,0 +1,46 @@
+version: 10.0.{build}
+image: Visual Studio 2017
+configuration: Release
+install:
+- ps: >-
+    cd src
+
+    nuget restore Smash.sln
+
+    $env:Smash_BUILD_NUMBER = ([int]$env:APPVEYOR_BUILD_NUMBER).ToString("000")
+   
+    $env:Smash_VERSION_SUFFIX = ""
+
+    $env:appveyor_nuget_push = 'false'
+
+    if(-Not $env:APPVEYOR_PULL_REQUEST_NUMBER) {
+      if($env:appveyor_repo_tag -eq 'True') {
+        if($env:appveyor_repo_tag_name -match '^v[0-9]') {
+           $env:appveyor_nuget_push = 'true'
+           $env:Smash_VERSION_SUFFIX = ""
+        }
+        if($env:appveyor_repo_tag_name -eq 'latest') {
+           $env:appveyor_nuget_push = 'true'
+           $env:Smash_VERSION_SUFFIX = "pre$env:Smash_BUILD_NUMBER"
+        }
+      }
+    }
+build:
+  project: src/Smash.sln
+  verbosity: minimal
+before_package:
+- cmd: >-
+     msbuild /t:pack /p:VersionSuffix="%Smash_VERSION_SUFFIX%" /p:Configuration=Release Smash/Smash.csproj
+
+     msbuild /t:Clean Smash/Smash.csproj
+     
+     msbuild /t:pack /p:VersionSuffix="%Smash_VERSION_SUFFIX%" /p:Configuration=Release;SignAssembly=true Smash/Smash.csproj
+artifacts:
+- path: src\Smash\Bin\Release\*.nupkg
+  name: Smash Nugets
+deploy:
+- provider: NuGet
+  api_key:
+    secure: 7cthHh+wYWZjhqxaxR6QObRaRnstvFkQOY7MkxIsC5kpQEBlKZXuinf0IybbYxJt
+  on:
+    appveyor_nuget_push: true

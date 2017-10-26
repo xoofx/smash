@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 
 namespace Smash.Tests
 {
@@ -7,7 +7,12 @@ namespace Smash.Tests
     {
         protected override xxHash.Hash64 Create(ulong seed = 0)
         {
-            return new xxHash.Hash64((uint)seed);
+            return xxHash.Create64((uint)seed);
+        }
+
+        protected override void Reset(ref xxHash.Hash64 hash, ulong seed = 0)
+        {
+            hash.Reset(seed);
         }
     }
 
@@ -16,7 +21,12 @@ namespace Smash.Tests
     {
         protected override xxHash.Hash32 Create(ulong seed = 0)
         {
-            return new xxHash.Hash32((uint)seed);
+            return xxHash.Create32((uint)seed);
+        }
+
+        protected override void Reset(ref xxHash.Hash32 hash, ulong seed = 0)
+        {
+            hash.Reset((uint)seed);
         }
     }
 }

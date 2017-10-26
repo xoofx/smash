@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using NUnit.Framework;
@@ -498,7 +498,7 @@ namespace Smash.Tests
 
             // Reset stream
             hashStream.Position = 0;
-            hashStream.Hash = Create();
+            Reset(ref hashStream.Hash);
 
             var inputArray = new byte[array.Length];
             var readCount = hashStream.Read(inputArray, 0, array.Length);
@@ -510,7 +510,50 @@ namespace Smash.Tests
             Assert.AreEqual(value, valueStreamRead);
         }
 
+        [Test]
+        public void TestHashStream()
+        {
+            var hash = Create();
+            var stream = new MemoryStream();
+            var hashStream = new HashStream<THash>(stream, hash);
+            Assert.AreEqual(stream.CanRead, hashStream.CanRead);
+            Assert.AreEqual(stream.CanWrite, hashStream.CanWrite);
+            Assert.AreEqual(stream.CanSeek, hashStream.CanSeek);
+            stream.Write(new byte[10], 0, 10);
+            Assert.AreEqual(stream.Position, hashStream.Position);
+            hashStream.Position = 0;
+            Assert.AreEqual(0, hashStream.Position);
+            Assert.AreEqual(stream.Position, hashStream.Position);
+            hashStream.SetLength(5);
+            Assert.AreEqual(stream.Length, hashStream.Length);
+            hashStream.Flush();
+            hashStream.Seek(1, SeekOrigin.Begin);
+            Assert.AreEqual(1, hashStream.Position);
+            Assert.AreEqual(stream.Position, hashStream.Position);
+        }
+
+        [Test]
+        public void TestExceptions()
+        {
+            var hash = Create();
+            Assert.Throws<ArgumentNullException>(() => hash.Write(null));
+            Assert.Throws<ArgumentNullException>(() => hash.Write(IntPtr.Zero, 0));
+            Assert.Throws<ArgumentNullException>(() => hash.Write(IntPtr.Zero, 0));
+
+
+            Assert.Throws<ArgumentNullException>(() => hash.Write((byte[])null, 0, 0));
+            Assert.Throws<ArgumentException>(() => hash.Write(new byte[1], 0, 2));
+            Assert.Throws<ArgumentOutOfRangeException>(() => hash.Write(new byte[1], 0, -1));
+            Assert.Throws<ArgumentException>(() => hash.Write(new byte[2], 1, 2));
+            Assert.Throws<ArgumentOutOfRangeException>(() => hash.Write(new byte[1], -1, 1));
+
+            // Should not generate an exception
+            hash.Write(new byte[1], 0, 0);
+        }
+
         protected abstract THash Create(ulong seed = 0);
+
+        protected abstract void Reset(ref THash hash, ulong seed = 0);
 
         private ulong Compute(THash hash)
         {

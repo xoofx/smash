@@ -29,6 +29,28 @@ namespace Smash.Tests
             Assert.AreNotEqual(0, v1);
         }
 
+        [TestCase((char)'a')]
+        [TestCase((char)257)]
+        [TestCase(char.MaxValue)]
+        [TestCase(char.MinValue)]
+        public void TestChar(char x)
+        {
+            var hash = Create();
+            hash.Write(x);
+            // Make sure that 2 consecutive Compute on the same hash are equal
+            Assert.AreEqual(Compute(hash), Compute(hash));
+
+            var newHash = Create(1);
+            newHash.Write(x);
+            // Make sure that 2 consecutive Compute on the same hash are equal
+            Assert.AreEqual(Compute(newHash), Compute(newHash));
+
+            // Verify that 2 different seeds gives different results
+            var v1 = ComputeAndPrint(hash);
+            Assert.AreNotEqual(v1, ComputeAndPrint(newHash));
+            Assert.AreNotEqual(0, v1);
+        }
+
         [TestCase((sbyte)0)]
         [TestCase((sbyte)64)]
         [TestCase(sbyte.MaxValue)]
@@ -186,6 +208,73 @@ namespace Smash.Tests
         [TestCase(true)]
         [TestCase(false)]
         public void TestBool(bool x)
+        {
+            var hash = Create();
+            hash.Write(x);
+            // Make sure that 2 consecutive Compute on the same hash are equal
+            Assert.AreEqual(Compute(hash), Compute(hash));
+
+            var newHash = Create(1);
+            newHash.Write(x);
+            // Make sure that 2 consecutive Compute on the same hash are equal
+            Assert.AreEqual(Compute(newHash), Compute(newHash));
+
+            // Verify that 2 different seeds gives different results
+            var v1 = ComputeAndPrint(hash);
+            Assert.AreNotEqual(v1, ComputeAndPrint(newHash));
+            Assert.AreNotEqual(0, v1);
+        }
+
+        [TestCase(0.0f)]
+        [TestCase(1.0f)]
+        [TestCase(5.0f)]
+        [TestCase(float.MinValue)]
+        [TestCase(float.MaxValue)]
+        public void TestFloat(float x)
+        {
+            var hash = Create();
+            hash.Write(x);
+            // Make sure that 2 consecutive Compute on the same hash are equal
+            Assert.AreEqual(Compute(hash), Compute(hash));
+
+            var newHash = Create(1);
+            newHash.Write(x);
+            // Make sure that 2 consecutive Compute on the same hash are equal
+            Assert.AreEqual(Compute(newHash), Compute(newHash));
+
+            // Verify that 2 different seeds gives different results
+            var v1 = ComputeAndPrint(hash);
+            Assert.AreNotEqual(v1, ComputeAndPrint(newHash));
+            Assert.AreNotEqual(0, v1);
+        }
+
+        [TestCase(0.0)]
+        [TestCase(1.0)]
+        [TestCase(5.0)]
+        [TestCase(double.MinValue)]
+        [TestCase(double.MaxValue)]
+        public void TestDouble(double x)
+        {
+            var hash = Create();
+            hash.Write(x);
+            // Make sure that 2 consecutive Compute on the same hash are equal
+            Assert.AreEqual(Compute(hash), Compute(hash));
+
+            var newHash = Create(1);
+            newHash.Write(x);
+            // Make sure that 2 consecutive Compute on the same hash are equal
+            Assert.AreEqual(Compute(newHash), Compute(newHash));
+
+            // Verify that 2 different seeds gives different results
+            var v1 = ComputeAndPrint(hash);
+            Assert.AreNotEqual(v1, ComputeAndPrint(newHash));
+            Assert.AreNotEqual(0, v1);
+        }
+
+        [TestCase("")]
+        [TestCase("abcd")]
+        [TestCase("123456789")]
+        public void TestString(string x)
         {
             var hash = Create();
             hash.Write(x);

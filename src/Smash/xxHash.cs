@@ -153,6 +153,35 @@ namespace Smash
                 Write(input ? (byte)1 : (byte)0);
             }
 
+            [MethodImpl((MethodImplOptions)0x100)] // Aggressive inlining for all .NETs
+            public unsafe void Write(string data)
+            {
+                if (data == null) throw new ArgumentNullException(nameof(data));
+                fixed (void* pdata = data)
+                {
+                    Write(new IntPtr(pdata), (ulong)data.Length * 2);
+                }
+            }
+
+            [MethodImpl((MethodImplOptions)0x100)] // Aggressive inlining for all .NETs
+            public unsafe void Write(float data)
+            {
+                Write(*(uint*)&data);
+            }
+
+            [MethodImpl((MethodImplOptions)0x100)] // Aggressive inlining for all .NETs
+            public unsafe void Write(double data)
+            {
+                Write(*(ulong*)&data);
+            }
+
+            [MethodImpl((MethodImplOptions)0x100)] // Aggressive inlining for all .NETs
+            public void Write(char data)
+            {
+                Write((byte)data&0xFF);
+                Write((byte)data >> 8);
+            }
+
             public unsafe void Write(IntPtr buffer, ulong length)
             {
                 if (buffer == IntPtr.Zero) throw new ArgumentNullException(nameof(buffer));
@@ -194,6 +223,11 @@ namespace Smash
                     throw new ArgumentOutOfRangeException(nameof(count), "count cannot be < 0");
                 if (buffer.Length - offset < count)
                     throw new ArgumentException("Invalid offset + count > length");
+
+                if (count == 0)
+                {
+                    return;
+                }
 
                 fixed (void* pByte = &buffer[offset])
                 {
@@ -397,6 +431,35 @@ namespace Smash
                 Write(input ? (byte)1 : (byte)0);
             }
 
+            [MethodImpl((MethodImplOptions)0x100)] // Aggressive inlining for all .NETs
+            public unsafe void Write(string data)
+            {
+                if (data == null) throw new ArgumentNullException(nameof(data));
+                fixed (void* pdata = data)
+                {
+                    Write(new IntPtr(pdata), (ulong)data.Length * 2);
+                }
+            }
+
+            [MethodImpl((MethodImplOptions)0x100)] // Aggressive inlining for all .NETs
+            public unsafe void Write(float data)
+            {
+                Write(*(uint*)&data);
+            }
+
+            [MethodImpl((MethodImplOptions)0x100)] // Aggressive inlining for all .NETs
+            public unsafe void Write(double data)
+            {
+                Write(*(ulong*)&data);
+            }
+
+            [MethodImpl((MethodImplOptions)0x100)] // Aggressive inlining for all .NETs
+            public void Write(char data)
+            {
+                Write((byte)data & 0xFF);
+                Write((byte)data >> 8);
+            }
+
             public unsafe void Write(IntPtr buffer, ulong length)
             {
                 if (buffer == IntPtr.Zero) throw new ArgumentNullException(nameof(buffer));
@@ -438,6 +501,11 @@ namespace Smash
                     throw new ArgumentOutOfRangeException(nameof(count), "count cannot be < 0");
                 if (buffer.Length - offset < count)
                     throw new ArgumentException("Invalid offset + count > length");
+
+                if (count == 0)
+                {
+                    return;
+                }
 
                 fixed (void* pByte = &buffer[offset])
                 {
